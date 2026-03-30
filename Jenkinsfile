@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        PATH = "/var/jenkins_home/bin/terraform"
+    }
+    
     stages {        
 
         stage('Init') {
