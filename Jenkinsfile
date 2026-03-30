@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        PATH = "/var/jenkins_home/bin/terraform"
+        PATH = "/var/jenkins_home/bin:${env.PATH}" 
     }
     
     stages {        
