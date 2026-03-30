@@ -1,13 +1,7 @@
 pipeline {
     agent any
 
-    stages {
-
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/danystark97/jenkinslab.git'
-            }
-        }
+    stages {        
 
         stage('Init') {
             steps {
