@@ -2,26 +2,32 @@ pipeline {
     agent any
 
     environment {
-        PATH = "/var/jenkins_home/bin:${env.PATH}" 
+        PATH = "/var/jenkins_home/bin:${env.PATH}"
     }
-    
-    stages {        
+
+    stages {
 
         stage('Init') {
             steps {
-                sh 'terraform init'
+                dir('terraform-demo') {
+                    sh 'terraform init'
+                }
             }
         }
 
         stage('Validate') {
             steps {
-                sh 'terraform validate'
+                dir('terraform-demo') {
+                    sh 'terraform validate'
+                }
             }
         }
 
         stage('Plan') {
             steps {
-                sh 'terraform plan -out=tfplan'
+                dir('terraform-demo') {
+                    sh 'terraform plan -out=tfplan'
+                }
             }
         }
 
@@ -33,7 +39,9 @@ pipeline {
 
         stage('Apply') {
             steps {
-                sh 'terraform apply tfplan'
+                dir('terraform-demo') {
+                    sh 'terraform apply tfplan'
+                }
             }
         }
     }
